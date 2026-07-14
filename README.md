@@ -1,4 +1,5 @@
-# Speech Media Automation Suite
+# Speech Media Automation Suite 🚀
+
 
 A Python-based test automation framework designed to validate interactive voice interfaces. Built with **Playwright**, **Groq API**, and **gTTS**, it leverages a virtual media stream injection technique to stream synthesized speech responses directly into Chromium's audio capture interface.
 
