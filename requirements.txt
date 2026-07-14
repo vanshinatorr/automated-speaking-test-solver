@@ -1,0 +1,4 @@
+playwright
+groq
+python-dotenv
+gtts

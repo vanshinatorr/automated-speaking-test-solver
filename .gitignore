@@ -1,0 +1,10 @@
+.env
+user_data/
+cache.json
+.venv/
+__pycache__/
+*.mp3
+*.wav
+temp_speech.*
+.DS_Store
+
