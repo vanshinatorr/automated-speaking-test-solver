@@ -1,44 +1,75 @@
-# BET Auto-Solver (Speaking Only Edition)
+# Automated Speaking Assessment Solver
 
-यह एक Playwright-आधारित ऑटोमेशन स्क्रिप्ट है जो **Bharat English Test (BET)** पर **Speaking Tasks** (Read Aloud, Extempore) को ऑटोमेटिकली हल करती है। 
+A powerful Python automation tool designed to solve speaking and listening assessments. Built with **Playwright**, **Groq API (Llama 3.1 & Whisper)**, and **gTTS**, it features a custom virtual media stream to inject synthesized speech audio directly into the browser's microphone input.
 
-यह स्क्रिप्ट **Windows** और **macOS** दोनों पर काम करने के लिए पूरी तरह तैयार है।
-
----
-
-## Setup Instructions (दोस्त के लिए आसान स्टेप्स)
-
-### 1. Python इंस्टॉल करें
-सुनिश्चित करें कि आपके लैपटॉप में **Python** इंस्टॉल है।
-* Windows पर इंस्टॉल करते समय **"Add Python to PATH"** वाले चेकबॉक्स को ज़रूर टिक करें।
+This script is fully cross-platform and compatible with **Windows**, **macOS**, and **Linux**.
 
 ---
 
-### 2. स्क्रिप्ट रन करें
-1. इस प्रोजेक्ट फ़ोल्डर को डाउनलोड/एक्सट्रैक्ट करें।
-2. इस फ़ोल्डर के अंदर टर्मिनल या कमांड प्रॉम्प्ट (CMD) खोलें और रन करें:
-   ```bash
-   python solver.py
-   ```
-   *(स्क्रिप्ट खुद-ब-खुद सभी ज़रूरी पैकेजेस और Playwright Chrome ड्राइवर इंस्टॉल कर लेगी, आपको अलग से कुछ इंस्टॉल करने की ज़रूरत नहीं है)*
+## 🌟 Key Features
+
+* **Virtual Microphone Audio Injection**: Modifies Chromium's native media devices API at startup to stream synthesized TTS responses directly into the browser's active recording interface.
+* **LLM-Powered Decision Making**: Uses the Groq API (`llama-3.1-8b-instant`) to analyze text prompts, visual structures, or transcripts and output high-scoring business communication responses.
+* **Audio Transcription**: Leverages Whisper (`whisper-large-v3`) to transcribe oral cues and listening-based prompts in real-time.
+* **Zero-Setup Bootstrapping**: Dynamically resolves and installs missing pip dependencies and browser drivers (Playwright Chromium) on the very first run.
+* **Automatic Background Detection**: Runs continuously in the background, automatically executing solver routines whenever the browser navigates onto active test pages.
+* **Security & Environment Safety**: Configured with strict Git rules to prevent secret credentials (API Keys) or Chrome profiles from leaking into public repositories.
 
 ---
 
-### 3. API Key डालें (जब पूछा जाए)
-* स्क्रिप्ट पहली बार रन करते समय आपसे टर्मिनल में **Groq API Key** मांगेगी।
-* वहां अपनी API Key पेस्ट करके **Enter** दबा दें। (यह आपके लिए ऑटोमेटिकली `.env` फ़ाइल बना देगी, ताकि अगली बार न पूछना पड़े)।
+## 🛠️ Architecture Overview
+
+```mermaid
+graph TD
+    A[Playwright Browser Initialization] -->|Inject Fake Mic Stream| B[Web Page Execution]
+    B -->|Detect Speaking Prompt| C[LLM Context Analyzer]
+    C -->|Fetch Audio/Text Prompt| D[Groq API Engine]
+    D -->|Whisper Transcription & Llama Answer| E[Cross-Platform gTTS Generator]
+    E -->|Base64 MP3 Stream| F[Virtual Microphone Injector]
+    F -->|Simulated Recording| B
+```
 
 ---
 
-## यह कैसे काम करता है? (How to use)
+## 🚀 Setup & Installation
 
-1. स्क्रिप्ट रन करने पर Chrome ब्राउज़र की एक नई विंडो खुलेगी।
-2. उस ब्राउज़र विंडो में **BET पोर्टल** पर लॉगिन करें।
-3. लॉगिन करने के बाद, अपने टर्मिनल (CMD) में आकर **एक बार Enter** दबाएं।
-4. अब आप ब्राउज़र में किसी भी **Lesson/Unit/Exam** के अंदर जाएं (जहां Speaking वाला सवाल हो)। स्क्रिप्ट बैकग्राउंड में उसे खुद डिटेक्ट कर लेगी और ऑटोमेटिकली सॉल्व कर देगी।
-5. **नोट**: `ASSIST_MODE` ऑन है, इसलिए जवाब भरने और रिकॉर्ड करने के बाद आपको खुद 'Check' और 'Continue' पर क्लिक करना होगा ताकि आप अगले सवाल पर जा सकें।
+### 1. Prerequisites
+Ensure you have **Python 3.10 or higher** installed. 
+* *Windows users: Make sure to check "Add Python to PATH" during installation.*
+
+### 2. Run the Script
+Clone this repository, navigate to the folder, and run:
+```bash
+python solver.py
+```
+*(On first execution, the script will automatically install all required packages and the Chromium driver).*
+
+### 3. Configure API Key
+When prompted in the terminal, paste your **Groq API Key** (available for free at [console.groq.com](https://console.groq.com/)). The script will automatically create a local `.env` file for you.
 
 ---
 
-## GitHub सुरक्षा (Security Note)
-आपकी API Keys और लॉगिन डेटा को सुरक्षित रखने के लिए `.env`, `user_data` (लॉगिन सेशन), और `cache.json` को `.gitignore` में डाल दिया गया है, ताकि वे कभी भी पब्लिकली GitHub पर अपलोड न हों।
+## 📖 How to Use
+
+1. Launching `solver.py` will open a persistent Chrome browser window.
+2. Log in to the test portal inside the browser window.
+3. Once logged in, go back to the terminal and press **ENTER** once to start the background automation loop.
+4. Browse to any lesson, module, or exam page. The solver will automatically detect speaking questions and process them in the background.
+5. *Note: `ASSIST_MODE` is enabled by default, meaning you will manually review and click "Check" or "Continue" to submit answers.*
+
+---
+
+## 🇮🇳 हिंदी निर्देश (Hindi Setup Guide)
+
+यदि आपके दोस्त को इसे सेटअप करने में सहायता चाहिए, तो वे नीचे दिए गए स्टेप्स फ़ॉलो करें:
+
+1. प्रोजेक्ट फ़ोल्डर के अंदर कमांड प्रॉम्प्ट (CMD) खोलें।
+2. यह कमांड चलाएं: `python solver.py` (यह खुद-ब-खुद सभी ज़रूरी पैकेजेस इंस्टॉल कर देगा)।
+3. पहली बार चलते समय टर्मिनल में **Groq API Key** पेस्ट करें और **Enter** दबाएं।
+4. ब्राउज़र में टेस्ट पोर्टल पर लॉगिन करें, फिर टर्मिनल में आकर **एक बार Enter** दबाएं।
+5. अब ब्राउज़र में परीक्षा पेज पर जाएं; स्क्रिप्ट बैकग्राउंड में खुद स्पीकिंग सवाल सॉल्व कर देगी।
+
+---
+
+## 🔒 Security
+Sensitive files such as `.env`, `user_data/` (Chrome session profiles), and `cache.json` are excluded via `.gitignore` to prevent credential exposure.
