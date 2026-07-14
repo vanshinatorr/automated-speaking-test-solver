@@ -1,4 +1,6 @@
+# Required dependencies for Speech Media Automation Suite
 playwright
 groq
 python-dotenv
 gtts
+
