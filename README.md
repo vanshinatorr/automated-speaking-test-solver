@@ -59,17 +59,5 @@ When prompted in the terminal, paste your **Groq API Key** (available for free a
 
 ---
 
-## 🇮🇳 हिंदी निर्देश (Hindi Setup Guide)
-
-यदि आपके दोस्त को इसे सेटअप करने में सहायता चाहिए, तो वे नीचे दिए गए स्टेप्स फ़ॉलो करें:
-
-1. प्रोजेक्ट फ़ोल्डर के अंदर कमांड प्रॉम्प्ट (CMD) खोलें।
-2. यह कमांड चलाएं: `python solver.py` (यह खुद-ब-खुद सभी ज़रूरी पैकेजेस इंस्टॉल कर देगा)।
-3. पहली बार चलते समय टर्मिनल में **Groq API Key** पेस्ट करें और **Enter** दबाएं।
-4. ब्राउज़र में टेस्ट पोर्टल पर लॉगिन करें, फिर टर्मिनल में आकर **एक बार Enter** दबाएं।
-5. अब ब्राउज़र में परीक्षा पेज पर जाएं; स्क्रिप्ट बैकग्राउंड में खुद स्पीकिंग सवाल सॉल्व कर देगी।
-
----
-
 ## 🔒 Security
 Sensitive files such as `.env`, `user_data/` (Chrome session profiles), and `cache.json` are excluded via `.gitignore` to prevent credential exposure.
