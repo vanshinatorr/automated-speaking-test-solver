@@ -1,3 +1,4 @@
+# Ignored configurations and transient local sessions
 .env
 user_data/
 cache.json
